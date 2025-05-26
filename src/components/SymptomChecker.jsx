@@ -41,7 +41,7 @@ const SymptomChecker = () => {
     setPrediction('');  // clear old prediction before loading
 
     try {
-      const res = await fetch('http://localhost:5000/predict', {
+      const res = await fetch('https://arogya-ai.onrender.com/predict', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ symptoms: symptomText }),
