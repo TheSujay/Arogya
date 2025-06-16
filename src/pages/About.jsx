@@ -3,35 +3,36 @@ import { assets } from "../assets/assets";
 
 const About = () => {
   return (
-    <div>
-      <div className="text-center text-2xl pt-10 text-[#707070]">
+    <div className="bg-gradient-to-r from-purple-700 via-purple-500 to-blue-400 min-h-screen text-white px-4 py-10">
+      {/* Header */}
+      <div className="text-center text-3xl font-semibold mb-10">
         <p>
-          ABOUT <span className="text-gray-700 font-semibold">US</span>
+          ABOUT <span className="text-gray-200">US</span>
         </p>
       </div>
 
-      <div className="my-10 flex flex-col md:flex-row gap-12">
+      {/* About Section */}
+      <div className="my-10 flex flex-col md:flex-row gap-12 items-center">
         <img
-          className="w-full md:max-w-[360px]"
+          className="w-full md:max-w-[360px] rounded-lg shadow-lg"
           src={assets.about_image}
-          alt=""
+          alt="About"
         />
-        <div className="flex flex-col justify-center gap-6 md:w-2/4 text-sm text-gray-600">
+        <div className="flex flex-col justify-center gap-6 md:w-2/4 text-base text-white">
           <p>
-            Welcome to Arogya, your trusted partner in managing your healthcare
-            needs conveniently and efficiently. At Arogya, we understand the
-            challenges individuals face when it comes to scheduling doctor
-            appointments and managing their health records.
+            Welcome to <strong>Arogya</strong>, your trusted partner in managing
+            your healthcare needs conveniently and efficiently. At Arogya, we
+            understand the challenges individuals face when it comes to
+            scheduling doctor appointments and managing their health records.
           </p>
           <p>
             Arogya is committed to excellence in healthcare technology. We
             continuously strive to enhance our platform, integrating the latest
             advancements to improve user experience and deliver superior
             service. Whether you're booking your first appointment or managing
-            ongoing care, Arogya is here to support you every step of the
-            way.
+            ongoing care, Arogya is here to support you every step of the way.
           </p>
-          <b className="text-gray-800">Our Vision</b>
+          <h3 className="text-xl font-bold text-white">Our Vision</h3>
           <p>
             Our vision at Arogya is to create a seamless healthcare experience
             for every user. We aim to bridge the gap between patients and
@@ -41,29 +42,30 @@ const About = () => {
         </div>
       </div>
 
-      <div className="text-xl my-4">
+      {/* Why Choose Us */}
+      <div className="text-center text-2xl font-semibold mb-6">
         <p>
-          WHY <span className="text-gray-700 font-semibold">CHOOSE US</span>
+          WHY <span className="text-gray-200">CHOOSE US</span>
         </p>
       </div>
 
-      <div className="flex flex-col md:flex-row mb-20">
-        <div className="border px-10 md:px-16 py-8 sm:py-16 flex flex-col gap-5 text-[15px] hover:bg-primary hover:text-white transition-all duration-300 text-gray-600 cursor-pointer">
-          <b>EFFICIENCY:</b>
+      <div className="flex flex-col md:flex-row gap-6 mb-20">
+        <div className="border border-white px-10 md:px-16 py-8 sm:py-16 flex flex-col gap-5 text-white bg-white/10 rounded-xl hover:bg-white hover:text-purple-700 transition-all duration-300 cursor-pointer">
+          <b>EFFICIENCY</b>
           <p>
             Streamlined appointment scheduling that fits into your busy
             lifestyle.
           </p>
         </div>
-        <div className="border px-10 md:px-16 py-8 sm:py-16 flex flex-col gap-5 text-[15px] hover:bg-primary hover:text-white transition-all duration-300 text-gray-600 cursor-pointer">
-          <b>CONVENIENCE: </b>
+        <div className="border border-white px-10 md:px-16 py-8 sm:py-16 flex flex-col gap-5 text-white bg-white/10 rounded-xl hover:bg-white hover:text-purple-700 transition-all duration-300 cursor-pointer">
+          <b>CONVENIENCE</b>
           <p>
             Access to a network of trusted healthcare professionals in your
             area.
           </p>
         </div>
-        <div className="border px-10 md:px-16 py-8 sm:py-16 flex flex-col gap-5 text-[15px] hover:bg-primary hover:text-white transition-all duration-300 text-gray-600 cursor-pointer">
-          <b>PERSONALIZATION:</b>
+        <div className="border border-white px-10 md:px-16 py-8 sm:py-16 flex flex-col gap-5 text-white bg-white/10 rounded-xl hover:bg-white hover:text-purple-700 transition-all duration-300 cursor-pointer">
+          <b>PERSONALIZATION</b>
           <p>
             Tailored recommendations and reminders to help you stay on top of
             your health.
