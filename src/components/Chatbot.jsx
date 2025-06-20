@@ -3,9 +3,6 @@ import axios from "axios";
 import { AppContext } from "../context/AppContext";
 import { assets } from "../assets/assets.js";
 
-// 👇 Replace this with your actual icon path
-
-
 const Chatbot = () => {
   const { userData, token } = useContext(AppContext);
   const [showChat, setShowChat] = useState(false);
@@ -74,8 +71,8 @@ const Chatbot = () => {
   }, [messages]);
 
   return (
-    <div className="fixed bottom-10 right-20 z-50">
-      {/* 🧠 Custom Icon Toggle Button */}
+    <div className="fixed bottom-6 right-4 sm:bottom-10 sm:right-20 z-50">
+      {/* Toggle Button */}
       {!showChat && (
         <button
           onClick={() => setShowChat(true)}
@@ -83,34 +80,36 @@ const Chatbot = () => {
           title="Open Arogya AI"
         >
           <img
-            src={assets.bot_icon} // Fallback to local icon if assets not available
+            src={assets.bot_icon}
             alt="AI Icon"
-            className="w-20 h-20 object-contain" // You can adjust size here
+            className="w-14 h-14 sm:w-20 sm:h-20 object-contain"
           />
         </button>
       )}
 
       {/* Chat Interface */}
       {showChat && (
-        <div className="w-[370px] shadow-xl rounded-xl bg-gradient-to-tr from-blue-900 to-purple-800 text-white p-4 space-y-2 relative">
+        <div className="w-[90vw] max-w-[370px] h-[70vh] sm:h-[410px] shadow-2xl rounded-xl bg-gradient-to-tr from-blue-900 to-purple-800 text-white p-4 flex flex-col">
           {/* Close Button */}
           <button
             onClick={() => setShowChat(false)}
-            className="absolute top-2 right-2 text-white text-sm hover:text-red-300"
+            className="absolute top-2 right-3 text-white text-sm hover:text-red-300"
           >
             ❌
           </button>
-          
 
           {/* Header */}
-          <div className="text-center font-semibold text-lg mb-2">
-            <div className="flex items-center justify-center gap-1"> <img src={assets.stethoscope_icon} alt="" className="w-5 h-5 object-contain" /><span className="text-white font-bold">Arogya AI Assistant</span></div>
+          <div className="text-center font-semibold text-base sm:text-lg mb-2 mt-1">
+            <div className="flex items-center justify-center gap-2">
+              <img src={assets.stethoscope_icon} alt="" className="w-5 h-5" />
+              <span className="font-bold">Arogya AI Assistant</span>
+            </div>
           </div>
 
           {/* Messages */}
           <div
-            className="h-64 overflow-y-auto space-y-2 text-sm scrollbar-thin pr-2"
             ref={scrollRef}
+            className="flex-1 overflow-y-auto space-y-2 text-sm sm:text-base scrollbar-thin pr-2"
           >
             {messages.map((msg, i) => {
               if (msg.type === "buttons") {
@@ -120,7 +119,7 @@ const Chatbot = () => {
                       <button
                         key={index}
                         onClick={btn.onClick}
-                        className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg text-sm w-fit"
+                        className="bg-purple-600 hover:bg-purple-700 text-white px-3 py-2 rounded-lg text-sm w-fit"
                       >
                         {btn.label}
                       </button>
@@ -149,17 +148,17 @@ const Chatbot = () => {
           </div>
 
           {/* Input */}
-          <div className="flex gap-2">
+          <div className="flex gap-2 mt-2">
             <input
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-              className="flex-1 px-3 py-2 rounded-lg text-black"
+              className="flex-1 px-3 py-2 rounded-lg text-black text-sm"
               placeholder="Ask me anything..."
             />
             <button
               onClick={sendMessage}
-              className="bg-white text-black px-3 py-2 rounded-lg"
+              className="bg-white text-black px-3 py-2 rounded-lg text-sm"
             >
               Send
             </button>
