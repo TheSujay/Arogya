@@ -24,7 +24,7 @@ const Chatbot = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:4000/api/chat",
+        "https://arogya-backend-wohi.onrender.com/api/chat",
         { message: input },
         {
           headers: {
