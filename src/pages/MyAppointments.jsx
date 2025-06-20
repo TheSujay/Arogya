@@ -13,15 +13,27 @@ const MyAppointments = () => {
   const [payment, setPayment] = useState("");
 
   const months = [
-    "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
   ];
 
   // Format slotDate like 20_01_2025 => 20 Jan 2025
   const slotDateFormat = (slotDate) => {
     const dateArray = slotDate.split("_");
     if (dateArray.length !== 3) return "Invalid Date";
-    return `${dateArray[0]} ${months[Number(dateArray[1]) - 1]} ${dateArray[2]}`;
+    return `${dateArray[0]} ${months[Number(dateArray[1]) - 1]} ${
+      dateArray[2]
+    }`;
   };
 
   // ✅ Get user appointments
@@ -47,40 +59,44 @@ const MyAppointments = () => {
 
   // ✅ Cancel appointment
   const cancelAppointment = async (appointmentId) => {
-  try {
-    // ✅ Add validation
-    if (!appointmentId) {
-      toast.error("Invalid appointment ID");
-      return;
-    }
-
-    console.log("🔎 Frontend: Cancelling appointment:", appointmentId);
-
-    const { data } = await axios.post(
-      `${backendUrl}/api/user/cancel-appointment`,
-      { appointmentId },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+    try {
+      // ✅ Add validation
+      if (!appointmentId) {
+        toast.error("Invalid appointment ID");
+        return;
       }
-    );
 
-    console.log("📡 Frontend: Response received:", data);
+      console.log("🔎 Frontend: Cancelling appointment:", appointmentId);
 
-    if (data.success) {
-      toast.success(data.message);
-      // ✅ Refresh appointments
-      getUserAppointments();
-    } else {
-      toast.error(data.message);
+      const { data } = await axios.post(
+        `${backendUrl}/api/user/cancel-appointment`,
+        { appointmentId },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      console.log("📡 Frontend: Response received:", data);
+
+      if (data.success) {
+        toast.success(data.message);
+        // ✅ Refresh appointments
+        getUserAppointments();
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      console.error("❌ Frontend Cancel Error:", error);
+      console.error("❌ Error response:", error.response?.data);
+      toast.error(
+        error.response?.data?.message ||
+          error.message ||
+          "Cancel request failed."
+      );
     }
-  } catch (error) {
-    console.error("❌ Frontend Cancel Error:", error);
-    console.error("❌ Error response:", error.response?.data);
-    toast.error(error.response?.data?.message || error.message || "Cancel request failed.");
-  }
-};
+  };
 
   // ✅ Payment (Razorpay)
   const initPay = (order) => {
@@ -259,6 +275,16 @@ const MyAppointments = () => {
                   <button className="sm:min-w-48 py-2 border border-blue-500 rounded text-blue-500">
                     Confirmed
                   </button>
+                )}
+                {item.reportUrl && (
+                  <a
+                    href={item.reportUrl}
+                    target="_blank" // 👈 append base URL
+                    download
+                    className="bg-green-600 text-white px-2 py-1 text-xs rounded"
+                  >
+                    ⬇️ Download Report
+                  </a>
                 )}
               </div>
             </div>

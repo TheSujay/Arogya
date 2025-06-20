@@ -4,15 +4,20 @@ import SpecialityMenu from '../components/SpecialityMenu'
 import SymptomChecker from '../components/SymptomChecker'
 import TopDoctors from '../components/TopDoctors'
 import Banner from '../components/Banner'
+import Chatbot from '../components/Chatbot'
+import ScrollAnimateWrapper from '../components/ScrollAnimateWrapper'
 
 const Home = () => {
   return (
     <div>
-      <Header />
-      <SpecialityMenu />
-      <SymptomChecker />  
-      <TopDoctors />
-      <Banner />
+      <ScrollAnimateWrapper><Header /></ScrollAnimateWrapper>
+      <ScrollAnimateWrapper><SpecialityMenu /></ScrollAnimateWrapper>
+      <ScrollAnimateWrapper><SymptomChecker /></ScrollAnimateWrapper>
+      <ScrollAnimateWrapper><TopDoctors /></ScrollAnimateWrapper>
+      <ScrollAnimateWrapper><Banner /></ScrollAnimateWrapper>
+      <ScrollAnimateWrapper><Chatbot /></ScrollAnimateWrapper>
+      <div className="h-[100px]"></div>
+      <div className="h-[100px]"></div>
     </div>
   )
 }
