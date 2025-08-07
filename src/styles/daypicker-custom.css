@@ -1,0 +1,17 @@
+/* daypicker-custom.css */
+.rdp {
+  --rdp-accent-color: #2563eb;
+  --rdp-background-color: #eff6ff;
+  margin: 0 auto;
+  font-family: 'Inter', sans-serif;
+}
+
+.rdp-day_selected {
+  background-color: #2563eb !important;
+  color: white !important;
+}
+
+.rdp-day_today {
+  color: #2563eb;
+  font-weight: 600;
+}

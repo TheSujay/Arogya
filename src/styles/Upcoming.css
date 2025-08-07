@@ -1,0 +1,80 @@
+.upcoming-appointments {
+  width: 350px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  padding: 24px 20px;
+  margin-left: auto; /* right side */
+}
+
+.upcoming-appointments h3 {
+  margin-bottom: 18px;
+  font-size: 1.2rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
+}
+
+.appointment-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 14px 12px;
+  margin-bottom: 18px;
+  background: #fafbfc;
+  position: relative;
+}
+
+.appointment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.appointment-number {
+  font-weight: bold;
+  font-size: 1.1rem;
+  background: #e3e6f3;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.appointment-menu {
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.appointment-date {
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.appointment-time {
+  color: #888;
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+}
+
+.appointment-doctor {
+  font-weight: 500;
+  margin-top: 6px;
+}
+
+.appointment-specialty {
+  font-size: 0.92rem;
+  color: #666;
+  margin-bottom: 4px;
+}
+
+.appointment-location {
+  font-size: 0.95rem;
+  margin: 6px 0;
+}
+
+.appointment-details {
+  color: #1976d2;
+  font-size: 0.95rem;
+  cursor: pointer;
+}

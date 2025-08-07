@@ -7,7 +7,7 @@ const TopDoctors = () => {
   const { doctors } = useContext(AppContext);
 
   return (
-    <div className="flex flex-col items-center gap-4 my-16 text-[#262626] md:mx-10">
+    <div className="flex flex-col items-center gap-4 my-16 text-[#262626] md:mx-10 py-24 px-6 sm:px-10 ">
       <h1 className="text-3xl font-medium">Top Doctors to Book</h1>
       <p className="sm:w-1/3 text-center text-sm">
         Simply browse through our extensive list of trusted doctors.
@@ -23,7 +23,7 @@ const TopDoctors = () => {
             key={index}
           >
             <img className="bg-[#EAEFFF]" src={item.image} alt="" />
-            <div className="p-4">
+            <div className="p-4 bg-white">
               <div
                 className={`flex items-center gap-2 text-sm text-center ${
                   item.available ? "text-green-500" : "text-gray-500"

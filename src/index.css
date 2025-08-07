@@ -4,6 +4,18 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --theme-color: #2e3192;
+  --text-color: #ffffff; /* Default contrast */
+}
+
+body {
+  background-color: var(--theme-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
 * {
     font-family: Outfit;
 }
@@ -17,6 +29,8 @@
        @apply text-white bg-primary
     }
 }
+
+
 
 ::-webkit-scrollbar {
     @apply hidden

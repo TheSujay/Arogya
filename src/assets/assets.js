@@ -38,7 +38,14 @@ import Neurologist from './Neurologist.svg'
 import Pediatricians from './Pediatricians.svg'
 import bot_icon from './bot_icon.png'  
 import stethoscope_icon from './stethoscope_icon.png'
-
+import HeaderVideo from './HeaderVideo.webm'
+import Doctor from './Doctor.gif'
+import LoginImage from './LoginImage.svg'
+import SignupImage from './SignupImage.svg'
+import google_Icon from './google_Icon.png'
+import edit_profile from './edit_profile.gif'
+import SidebarBg from './SidebarBg.png'
+import { Sidebar } from 'lucide-react'
 
 export const assets = {
     appointment_img,
@@ -59,7 +66,14 @@ export const assets = {
     stripe_logo,
     razorpay_logo,
     bot_icon,
-    stethoscope_icon
+    stethoscope_icon,
+    HeaderVideo,
+    Doctor,
+   LoginImage,
+   SignupImage,
+   google_Icon,
+   edit_profile,
+   SidebarBg,
 }
 
 export const specialityData = [

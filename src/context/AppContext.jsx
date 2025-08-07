@@ -10,14 +10,49 @@ const AppContextProvider = (props) => {
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   const [doctors, setDoctors] = useState([]);
-  const [token, setToken] = useState(
-    localStorage.getItem("token") || ""
-  );
+  const [token, setToken] = useState(localStorage.getItem("token") || "");
   const [userData, setUserData] = useState(
     localStorage.getItem("userData")
       ? JSON.parse(localStorage.getItem("userData"))
       : null
   );
+  const [loading, setLoading] = useState(true); // ✅ new state
+  const [authChecked, setAuthChecked] = useState(false);
+  const [showMobileMenu, setShowMobileMenu] = useState(false); // ← NEW
+
+
+  // ✅ THEME COLOR STATE
+  const [themeColor, setThemeColor] = useState(
+    localStorage.getItem("themeColor") || "#2e3192"
+  );
+
+  // ✅ APPLY THEME VARIABLES
+  useEffect(() => {
+    const root = document.documentElement;
+    root.style.setProperty("--theme-color", themeColor);
+    root.style.setProperty("--text-color", getContrastYIQ(themeColor));
+    localStorage.setItem("themeColor", themeColor);
+  }, [themeColor]);
+
+  // ✅ YIQ CONTRAST CHECKER
+  const getContrastYIQ = (hex) => {
+    hex = hex.replace("#", "");
+    const r = parseInt(hex.substr(0, 2), 16);
+    const g = parseInt(hex.substr(2, 2), 16);
+    const b = parseInt(hex.substr(4, 2), 16);
+    const yiq = (r * 299 + g * 587 + b * 114) / 1000;
+    return yiq >= 128 ? "#000000" : "#ffffff";
+  };
+
+useEffect(() => {
+  if (!token) {
+    localStorage.removeItem("userData"); // 🧹 Clear userData if no token
+    setUserData(null);
+  }
+  setAuthChecked(true); // Done checking
+}, [token]);
+
+
 
   const getDoctosData = async () => {
     try {
@@ -49,11 +84,15 @@ const AppContextProvider = (props) => {
     } catch (error) {
       console.log(error);
       toast.error(error.message);
+    } finally {
+      setLoading(false); // ✅ stop loading
     }
   };
 
   useEffect(() => {
-    if (token) localStorage.setItem("token", token);
+    if (token) {
+      localStorage.setItem("token", token);
+    }
   }, [token]);
 
   useEffect(() => {
@@ -61,7 +100,11 @@ const AppContextProvider = (props) => {
   }, []);
 
   useEffect(() => {
-    if (token) loadUserProfileData();
+    if (token) {
+      loadUserProfileData();
+    } else {
+      setLoading(false); // ✅ no token, but done loading
+    }
   }, [token]);
 
   const logout = () => {
@@ -85,6 +128,13 @@ const AppContextProvider = (props) => {
         setUserData,
         loadUserProfileData,
         logout,
+        loading, // ✅ added
+        setLoading, // ✅ added
+        authChecked, // ✅ added to indicate auth check is done
+        themeColor,       // ✅ provide themeColor
+        setThemeColor,    // ✅ provide setter
+        showMobileMenu,        // ← NEW
+        setShowMobileMenu,     // ← NEW
       }}
     >
       {props.children}

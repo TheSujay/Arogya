@@ -1,7 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { assets } from '../assets/assets';
 
 const Contact = () => {
+  const [success, setSuccess] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    formData.append("access_key", import.meta.env.VITE_WEB3FORM_ACCESS_KEY);
+
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData,
+    });
+
+    const result = await response.json();
+    if (result.success) {
+      setSuccess(true);
+      e.target.reset();
+    } else {
+      alert("Something went wrong!");
+    }
+  };
+
   return (
     <div className="bg-gradient-to-r from-purple-700 via-purple-500 to-blue-400 min-h-screen">
       {/* Header */}
@@ -34,15 +56,20 @@ const Contact = () => {
             🚀
           </div>
           <h2 className="text-xl font-semibold mb-6 mt-6">Drop Us a Message</h2>
-          <form className="flex flex-col gap-4">
-            <input type="text" placeholder="Asiq" className="border border-gray-300 px-4 py-2 rounded-xl focus:outline-none" required />
-            <input type="email" placeholder="asiq@gmail.com" className="border border-gray-300 px-4 py-2 rounded-xl focus:outline-none" required />
-            <input type="tel" placeholder="9087897564" className="border border-gray-300 px-4 py-2 rounded-xl focus:outline-none" required />
-            <textarea placeholder="Love your service. Thank you!" className="border border-gray-300 px-4 py-2 rounded-xl resize-none h-24 focus:outline-none" required />
-            <button type="submit" className="bg-purple-700 hover:bg-purple-900 text-white py-2 rounded-full transition duration-300">
-              Send Message
-            </button>
-          </form>
+
+          {success ? (
+            <div className="text-green-600 font-medium">Thanks for your message! We'll get back to you soon.</div>
+          ) : (
+            <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+              <input type="text" name="name" placeholder="Asiq" className="border border-gray-300 px-4 py-2 rounded-xl focus:outline-none" required />
+              <input type="email" name="email" placeholder="asiq@gmail.com" className="border border-gray-300 px-4 py-2 rounded-xl focus:outline-none" required />
+              <input type="tel" name="phone" placeholder="9087897564" className="border border-gray-300 px-4 py-2 rounded-xl focus:outline-none" required />
+              <textarea name="message" placeholder="Love your service. Thank you!" className="border border-gray-300 px-4 py-2 rounded-xl resize-none h-24 focus:outline-none" required />
+              <button type="submit" className="bg-purple-700 hover:bg-purple-900 text-white py-2 rounded-full transition duration-300">
+                Send Message
+              </button>
+            </form>
+          )}
         </div>
       </div>
     </div>

@@ -2,18 +2,28 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { AppContext } from "../context/AppContext";
 import { assets } from "../assets/assets.js";
+import clsx from "clsx";
 
 const Chatbot = () => {
-  const { userData, token } = useContext(AppContext);
+  const { userData, token, showMobileMenu } = useContext(AppContext);
   const [showChat, setShowChat] = useState(false);
-  const [messages, setMessages] = useState([
-    {
-      from: "bot",
-      text: `👋 Hello ${userData?.name || "Guest"}! I'm Arogya AI Assistant.\nHow can I help you today?`,
-    },
-  ]);
+  const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const scrollRef = useRef(null);
+
+  // Initial greeting
+  useEffect(() => {
+    if (showChat) {
+      setMessages([
+        {
+          from: "bot",
+          text: userData?.name
+            ? `👋 Hello ${userData.name}! I'm Arogya AI Assistant.\nHow can I help you today?`
+            : `👋 Hello! I'm Arogya AI Assistant.\nYou can explore doctor info, but please login or sign up for full features.`,
+        },
+      ]);
+    }
+  }, [showChat, userData]);
 
   const sendMessage = async () => {
     if (!input.trim()) return;
@@ -44,11 +54,11 @@ const Chatbot = () => {
           options: [
             {
               label: "📅 Book Appointment",
-              onClick: () => (window.location.href = "/book-appointment"),
+              onClick: () => (window.location.href = "/main/book-appointment"),
             },
             {
               label: "🗂️ View My Appointments",
-              onClick: () => (window.location.href = "/my-appointments"),
+              onClick: () => (window.location.href = "/main/my-appointments"),
             },
           ],
         };
@@ -71,7 +81,13 @@ const Chatbot = () => {
   }, [messages]);
 
   return (
-    <div className="fixed bottom-6 right-4 sm:bottom-10 sm:right-20 z-50">
+    <div
+      className={clsx(
+        "fixed z-50 transition-all",
+        "bottom-24 right-4 md:bottom-10 md:right-20",
+        showMobileMenu && "hidden"
+      )}
+    >
       {/* Toggle Button */}
       {!showChat && (
         <button

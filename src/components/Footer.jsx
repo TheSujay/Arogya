@@ -3,36 +3,46 @@ import { assets } from "../assets/assets";
 
 const Footer = () => {
   return (
-    <div className="md:mx-10">
-      <div className="flex flex-col sm:grid grid-cols-[3fr_1fr_1fr] gap-14 my-10  mt-40 text-sm">
+    <footer className="bg-white border-t border-gray-200 px-6 md:px-16 pt-12 pb-6 text-sm text-gray-600">
+      <div className="grid gap-12 md:grid-cols-3 mb-12">
+        {/* Logo + Description */}
         <div>
-          <img className="mb-5 w-40" src={assets.logo} alt="" />
-          <p className="w-full md:w-2/3 text-gray-600 leading-6">
-            Our Hospital Management System is the modern heartbeat of healthcare
-            — smart, seamless, and built with care. Designed to simplify
-            operations and enhance patient experience, it brings hospitals into
-            the future with just a few clicks.
+          <img src={assets.logo} alt="Logo" className="w-36 mb-4" />
+          <p className="leading-relaxed max-w-md">
+            Our Hospital Management System is the modern heartbeat of healthcare — 
+            smart, seamless, and built with care. Simplify operations and enhance 
+            patient experience with just a few clicks.
           </p>
         </div>
 
+        {/* Company Links */}
         <div>
-          <p className="text-xl font-medium mb-5">COMPANY</p>
-          <ul className="flex flex-col gap-2 text-gray-600">
-            <li>Home</li>
-            <li>About us</li>
-            <li>Delivery</li>
-            <li>Privacy policy</li>
+          <h4 className="text-base font-semibold text-gray-800 mb-4">COMPANY</h4>
+          <ul className="space-y-2">
+            <li className="hover:text-primary cursor-pointer transition">Home</li>
+            <li className="hover:text-primary cursor-pointer transition">About us</li>
+            <li className="hover:text-primary cursor-pointer transition">Delivery</li>
+            <li className="hover:text-primary cursor-pointer transition">Privacy Policy</li>
           </ul>
         </div>
 
+        {/* Contact Info */}
         <div>
-          <p className="text-xl font-medium mb-5">GET IN TOUCH</p>
-          <ul className="flex flex-col gap-2 text-gray-600">
+          <h4 className="text-base font-semibold text-gray-800 mb-4">GET IN TOUCH</h4>
+          <ul className="space-y-2">
             <li>
-              <a href="tel:+918101517647">+91-8101517647</a>
+              <a
+                href="tel:+918101517647"
+                className="hover:text-primary transition"
+              >
+                +91-8101517647
+              </a>
             </li>
             <li>
-              <a href="mailto:arogyaofficial@gmail.com">
+              <a
+                href="mailto:arogyaofficial@gmail.com"
+                className="hover:text-primary transition"
+              >
                 arogyaofficial@gmail.com
               </a>
             </li>
@@ -40,13 +50,11 @@ const Footer = () => {
         </div>
       </div>
 
-      <div>
-        <hr />
-        <p className="py-5 text-sm text-center">
-          Copyright 2025 @ Arogya.com - All Right Reserved.
-        </p>
+      {/* Bottom */}
+      <div className="border-t pt-4 text-center text-xs text-gray-500">
+        © 2025 Arogya.com — All Rights Reserved.
       </div>
-    </div>
+    </footer>
   );
 };
 

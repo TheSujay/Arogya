@@ -19,6 +19,8 @@ export default {
         'bot-bg': '#1E3A8A',
         'user-bg': '#047857',
         danger: '#EF4444',
+        theme: 'var(--theme-color)',
+        themetext: 'var(--text-color)',
       },
       boxShadow: {
         'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.37)',
@@ -30,18 +32,26 @@ export default {
       },
       animation: {
         fadeIn: 'fadeIn 0.6s ease-out',
+        float: 'float 6s ease-in-out infinite',
       },
       keyframes: {
         fadeIn: {
           '0%': { opacity: 0, transform: 'translateY(20px)' },
           '100%': { opacity: 1, transform: 'translateY(0)' },
         },
+        float: {
+          '0%, 100%': { transform: 'translateY(0px) scale(1)' },
+          '50%': { transform: 'translateY(-8px) scale(1.02)' },
+        },
       },
+
+      
     },
   },
   plugins: [
     require('tailwind-scrollbar-hide'),
     require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
+    require('@tailwindcss/line-clamp'),
   ],
 }
