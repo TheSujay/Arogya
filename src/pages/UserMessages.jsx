@@ -5,7 +5,7 @@ import { io } from "socket.io-client";
 import clsx from "clsx";
 import { MessageSquare } from "lucide-react";
 
-const socket = io(import.meta.env.VITE_SOCKET_URL || "http://localhost:4000", {
+const socket = io(import.meta.env.VITE_BACKEND_URL || "http://localhost:4000", {
   withCredentials: true,
 });
 
